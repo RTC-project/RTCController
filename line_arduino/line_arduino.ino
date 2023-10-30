@@ -27,6 +27,13 @@ void setup() {
   pinMode(22, OUTPUT);
   pinMode(23, OUTPUT);
 
+  analogWrite(4, 0);
+  analogWrite(5, 0);
+  analogWrite(6, 0);
+  analogWrite(7, 0);
+  analogWrite(8, 0);
+  analogWrite(9, 0);
+
   for(int i = 0; i < BUF_SIZE; i++){
     rx_buf[i] = 0;
   }
@@ -69,12 +76,12 @@ void loop() {
       m4 -= MEAN_POWER;
       m5 -= MEAN_POWER;
       m6 -= MEAN_POWER;
-      int dm1 = m1 < 0 ? 0 : 1;
-      int dm2 = m2 < 0 ? 1 : 0;
+      int dm1 = m1 < 0 ? 1 : 0;
+      int dm2 = m2 < 0 ? 0 : 1;
       int dm3 = m3 < 0 ? 1 : 0;
-      int dm4 = m4 < 0 ? 1 : 0;
+      int dm4 = m4 < 0 ? 0 : 1;
       int dm5 = m5 < 0 ? 0 : 1;
-      int dm6 = m6 < 0 ? 0 : 1;
+      int dm6 = m6 < 0 ? 1 : 0;
       analogWrite(4, abs(m1));
       analogWrite(5, abs(m2));
       analogWrite(6, abs(m3));
@@ -86,7 +93,7 @@ void loop() {
       digitalWrite(12, dm3);
       digitalWrite(13, dm4);
       digitalWrite(22, dm5);
-      digitalWrite(33, dm6);
+      digitalWrite(23, dm6);
       //Serial.print(m1);
       //Serial.print(" ");
       //Serial.print(m2);
